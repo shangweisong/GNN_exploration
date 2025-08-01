@@ -4,7 +4,7 @@ This project builds a Graph Neural Network (GNN) to classify whether a subject i
 
 ---
 
-## 📦 Dataset Description
+## Dataset Description
 
 We use multimodal neuroimaging data consisting of:
 
@@ -22,7 +22,7 @@ We use multimodal neuroimaging data consisting of:
 
 ---
 
-## 📁 Files Used
+## Files Used
 
 - `train_FNC.csv`: FNC correlation features (edge attributes)
 - `train_labels.csv`: Binary labels (0 or 1)
@@ -32,7 +32,7 @@ We use multimodal neuroimaging data consisting of:
 
 ---
 
-## 🧩 Graph Construction
+##  Graph Construction
 
 Each subject is modeled as a graph using:
 
@@ -45,3 +45,12 @@ Data(
   y=[1],                    # Label
   subject_id=xxxxx
 )
+
+class GNNWithEdgeAttrsAndSBM(nn.Module):
+    def __init__(self, in_channels=3, edge_dim=1, hidden_dim=256):
+        ...
+    def forward(self, data):
+        # Apply NNConv layers
+        # Global pooling over nodes
+        # Concatenate SBM features
+        # Classify with final linear layer
