@@ -1,56 +1,89 @@
-# 🧠 Schizophrenia Classification Using Graph Neural Networks
+# 📊 Exploration of GNN Applications with PyTorch Geometric
 
-This project builds a Graph Neural Network (GNN) to classify whether a subject is a Schizophrenic Patient (`1`) or a Healthy Control (`0`) using functional and structural brain imaging data. The model integrates graph-based features from fMRI (FNC) and scalar features from sMRI (SBM).
-
----
-
-## Dataset Description
-
-We use multimodal neuroimaging data consisting of:
-
-### 1. Functional Network Connectivity (FNC)
-- Correlation features between timecourses of 28 ICA brain components.
-- Represented as a graph:
-  - **Nodes**: Brain regions (28 total)
-  - **Edges**: Correlation between region pairs
-  - **Edge Attributes**: Strength of functional connectivity
-  - **Node Features**: 3D spatial coordinates (x, y, z)
-
-### 2. Source-Based Morphometry (SBM)
-- 32 ICA-derived components representing gray matter concentration.
-- Treated as a graph-level feature vector for each subject.
+This repository explores the application of Graph Neural Networks (GNNs) using the [PyTorch Geometric](https://pytorch-geometric.readthedocs.io/en/latest/) library. It focuses on demonstrating how GNNs can be applied to a variety of datasets and problem types, while also providing insight into graph data creation, visualization, and architecture design.
 
 ---
 
-## Files Used
+## 🔍 Overview
 
-- `train_FNC.csv`: FNC correlation features (edge attributes)
-- `train_labels.csv`: Binary labels (0 or 1)
-- `rs_fMRI_FNC_mapping.csv`: Mapping from FNC columns to (nodeA, nodeB)
-- `train_node.csv`: Node coordinates (x, y, z) for ICA components
-- `train_SBM.csv`: SBM ICA loadings per subject (graph-level features)
+We aim to cover the following key areas:
+
+- How to convert raw data into graph-structured data  
+- Techniques for visualizing graphs using popular Python libraries  
+- Implementing and experimenting with various GNN architectures:
+  - **Vanilla GNNs**
+  - **GNNs with edge features**
+  - **Spatio-temporal GNNs**
 
 ---
 
-##  Graph Construction
+## 📂 Datasets
 
-Each subject is modeled as a graph using:
+The project utilizes three diverse datasets:
 
-```python
-Data(
-  x=[28, 3],                # Node coordinates
-  edge_index=[2, 378],      # Graph structure
-  edge_attr=[378, 1],       # FNC edge weights
-  sbm=[32],                 # SBM features
-  y=[1],                    # Label
-  subject_id=xxxxx
-)
+1. **Cora Citation Dataset**  
+   - Classic benchmark for node classification in citation networks.
 
-class GNNWithEdgeAttrsAndSBM(nn.Module):
-    def __init__(self, in_channels=3, edge_dim=1, hidden_dim=256):
-        ...
-    def forward(self, data):
-        # Apply NNConv layers
-        # Global pooling over nodes
-        # Concatenate SBM features
-        # Classify with final linear layer
+2. **MLSP 2014 Schizophrenia Dataset**  
+   - Brain connectome data used to explore GNNs for neuroimaging applications.
+
+3. **Singapore Rainfall Dataset**  
+   - A geospatial-temporal dataset used to demonstrate spatio-temporal GNN models.
+
+---
+
+## Features
+
+- Graph construction from tabular/raw data  
+- Visualization using `NetworkX`, `matplotlib`,`plotly`,and others  
+- End-to-end training pipelines using PyTorch Geometric  
+- Modular and extensible architecture for experimenting with various GNN models
+
+---
+
+## 📁 Project Structure
+
+```
+
+```
+
+---
+
+## Getting Started
+
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/shangweisong/GNN_exploration
+cd GNN_exploration
+
+# (Recommended) Create a virtual environment
+python -m venv venv
+uv sync-all-groups
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+```
+
+---
+
+##  Visualization
+
+The project includes several utilities to visualize graph structures and training progress using:
+
+- `networkx`
+- `matplotlib`
+-  `plotly`
+---
+
+## Future Work
+
+- Incorporation of attention-based GNNs (e.g., GAT, Graph Transformers)  
+- Integration with more real-world temporal datasets  
+- Hyperparameter tuning utilities  
+---
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
