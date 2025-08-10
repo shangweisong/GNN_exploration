@@ -1,4 +1,4 @@
-# STGNN Rainfall Forecasting (Notebook)
+# 🌧️ STGNN Rainfall Forecasting (Notebook)
 
 A compact, end-to-end example of using a **Spatio-Temporal Graph Neural Network (STGNN)** for **node-level rainfall forecasting**, plus a quick demo of converting **tabular station data to graph data**.
 
@@ -15,6 +15,8 @@ A compact, end-to-end example of using a **Spatio-Temporal Graph Neural Network 
 * **Validation/Test:** per-epoch Train/Val loss, Val R²/RMSE; final Test R²/MSE/RMSE.
 * **Plots:** per-station forecast; **average over all nodes** (with optional ±1 std band).
 * **(Bonus) Explainability:** Simple SHAP local explanation example.
+
+![Graph Map Plot Overlay](images/graph_map_plot.png)
 
 ---
 
@@ -78,6 +80,9 @@ pip install -r requirements.txt
 * **Per-epoch:** Train loss (scaled), **Val loss (scaled), Val R², Val RMSE** (original units).
 * **Final test:** **R² / MSE / RMSE** (original units).
 * **Forecast visuals:** per-station curves; **mean over nodes** .
+
+#### Forecast plot on test data:  
+![Test Data Forecast Plot](images/test_forecast_plot.png)  
 
 ---
 
